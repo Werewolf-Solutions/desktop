@@ -30,6 +30,8 @@ function App() {
   const [user, setUser] = React.useState();
   // Handle budget selected
   const [budget, setBudget] = React.useState()
+  // Handle exchanges
+  const [exchanges, setExchanges] = React.useState([])
 
   const [web3, setWeb3] = React.useState();
 
@@ -74,6 +76,7 @@ function App() {
     }else if (user) {
       setUser(user);
       update(user.budgets[0])
+      setExchanges(user.exchanges)
       setSignedIn(true);
     }
   }
@@ -122,6 +125,8 @@ function App() {
         update={update}
         budget={budget}
         setBudget={setBudget}
+        exchanges={exchanges}
+        setExchanges={setExchanges}
       />
       <Footer></Footer>
     </div>

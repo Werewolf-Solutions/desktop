@@ -30,7 +30,10 @@ export default class Body extends Component {
           <div>
               <Investments
                 user={this.props.user}
+                update={this.props.update}
                 authUser={this.props.authUser}
+                exchanges={this.props.exchanges}
+                setExchanges={this.props.setExchanges}
               />
           </div>
         )

@@ -7,11 +7,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
-import AddBot from './AddBot';
-import BalanceDialog from './BalanceDialog';
-import Loading from '../Layout/Loading';
-import axios from 'axios';
+import {
+  Button,
+  IconButton
+} from '@material-ui/core';
+import {
+  Delete
+} from '@material-ui/icons'
+import BalanceDialog from '../BalanceDialog';
 
 const useStyles = makeStyles({
   table: {
@@ -43,37 +46,27 @@ export default function ExchangesTable(props) {
 
   const handleBalanceDialog = () => {
     setBalanceOpen(!balanceOpen);
-  }
-
-  const deleteExchange = async (exchange) => {
-    const res = await axios.post('/users/delete-exchange', exchange);
-    console.log(res.data);
-    props.authUser();
-  }
+  }  
 
   return (
-    <div>
-      <AddBot
-        open={open}
-        handleClose={handleClose}
-        exchange={exchange}
-      />      
+    <div>     
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Exchanges</TableCell>
-              <TableCell align="right">Balances</TableCell>
-              <TableCell align="right">Active bots</TableCell>
+              <TableCell >Active bots</TableCell>
+              <TableCell >Balances</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-          {props.user.exchanges ? props.user.exchanges.map((exchange) => (
+          {props.exchanges.map((exchange) => (
             <TableRow key={exchange.name}>
               <TableCell component="th" scope="row">
                 {exchange.name}
               </TableCell>
-              <TableCell align="right">
+              <TableCell >{exchange.activeBot}</TableCell>
+              <TableCell >
               <BalanceDialog
                 open={balanceOpen}
                 onClose={handleBalanceDialog}
@@ -83,19 +76,18 @@ export default function ExchangesTable(props) {
                   onClick={handleBalanceDialog}
                 >Balance</Button>
               </TableCell>
-              <TableCell align="right">{exchange.activeBot}</TableCell>
-              <TableCell align="right">
+              <TableCell>
                 <Button
-                  onClick={() => handleClickOpen(exchange)}
-                >add bot</Button>
+                  onClick={() => props.showBotsLogs(exchange)}
+                >Show bots logs</Button>
               </TableCell>
-              <TableCell align="right">
-                <Button
-                  onClick={() => deleteExchange(exchange)}
-                >delete exchange</Button>
+              <TableCell>
+                <IconButton
+                  onClick={() => props.deleteExchange(exchange)}
+                ><Delete /></IconButton>
               </TableCell>
             </TableRow>            
-          )) : <Loading />}
+          ))}
           </TableBody>
         </Table>
       </TableContainer>
