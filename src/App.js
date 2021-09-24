@@ -33,7 +33,7 @@ function App() {
   // Handle exchanges
   const [exchanges, setExchanges] = React.useState([])
 
-  const [web3, setWeb3] = React.useState();
+  var [web3, setWeb3] = React.useState();
 
   // Connect Metamask
   // TODO: set web3 provider from Metamask

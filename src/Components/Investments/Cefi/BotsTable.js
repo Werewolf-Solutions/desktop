@@ -14,10 +14,11 @@ import {
 
 export default function BotsTable(props) {
     console.log(props.tradingBots[0])
+    console.log(props.strategies[0])
     return (
         <div>
             <Table>
-                <TableHead>Head</TableHead>
+                <TableHead>Bots</TableHead>
                 <TableBody>
                     <TableRow>
                         <TableCell>Pair</TableCell>
@@ -29,8 +30,8 @@ export default function BotsTable(props) {
                     {props.tradingBots.map(bot => 
                         <TableRow>
                             <TableCell>{bot.pair.i}</TableCell>
-                            <TableCell>{bot.exchange}</TableCell>
-                            <TableCell>{bot.strategy}</TableCell>
+                            <TableCell>{bot.exchange.name}</TableCell>
+                            <TableCell>{bot.strategy.name}</TableCell>
                             <TableCell>{bot.mode}</TableCell>
                             <TableCell>{bot.status}</TableCell>
                             <TableCell>

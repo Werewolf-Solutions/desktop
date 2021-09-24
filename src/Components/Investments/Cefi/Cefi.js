@@ -231,6 +231,7 @@ export default function Cefi(props) {
                 open={botsDialog}
                 onClose={handleBotsDialog}
                 tradingBots={props.user.tradingBots}
+                strategies={props.user.strategies}
                 handleBotStatus={handleBotStatus}
                 deleteBot={deleteBot}
             />

@@ -8,6 +8,7 @@ export default function BotsDialog(props) {
             <Dialog open={props.open} onClose={props.onClose}>
                 <BotsTable
                     tradingBots={props.tradingBots}
+                    strategies={props.strategies}
                     deleteBot={props.deleteBot}
                     handleBotStatus={props.handleBotStatus}
                 />
