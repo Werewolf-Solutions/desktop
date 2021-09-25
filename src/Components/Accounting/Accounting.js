@@ -335,7 +335,6 @@ export default function Accounting(props) {
         await accounting.editBudget(props.budget, working_days)
         props.update(props.budget)
     }
-
     return (
         <div>
             <AddBudgetDialog
